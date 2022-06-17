@@ -169,7 +169,7 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
             # TASK5: Average flight time by reporting airline
             # Enter your code below. Make sure you have correct formatting.
             
-            line_fig = px.line(line_data, x='Month', y='FlightTime', color='Reporting_Airline', title='Average Flight Time by Reporting Airline')
+            line_fig = px.line(line_data, x='Month', y='AirTime', color='Reporting_Airline', title='Average Flight Time by Reporting Airline')
             
             
             # Percentage of diverted airport landings per reporting airline
@@ -190,8 +190,8 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
             # TASK6: Number of flights flying to each state from each reporting airline
             # Enter your code below. Make sure you have correct formatting.
             # REVIEW6: Create a tree map
-            tree_fig = px.treemap(
-                                tree_data, path=['DestState', 'Reporting_Airline'],
+            tree_fig = px.treemap(data_frame=tree_data,
+                                path=['DestState', 'Reporting_Airline'],
                                 values='Flights', 
                                 title='Flight count by airline to destination state',
                                 color_continuous_scale='RdBu',
@@ -204,8 +204,7 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
                     dcc.Graph(figure=pie_fig),
                     dcc.Graph(figure=map_fig),
                     dcc.Graph(figure=bar_fig),
-                    dcc.Graph(figure=line_fig)
-                   ]
+                    dcc.Graph(figure=line_fig),]
         else:
             # REVIEW7: This covers chart type 2 and we have completed this exercise under Flight Delay Time Statistics Dashboard section
             # Compute required information for creating graph from the data
@@ -223,8 +222,7 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
                    dcc.Graph(figure=nas_fig), 
                    dcc.Graph(figure=sec_fig), 
                    dcc.Graph(figure=late_fig)]
-
-
+                   
 # Run the app
 if __name__ == '__main__':
     app.run_server()
