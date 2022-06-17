@@ -76,7 +76,7 @@ def compute_data_choice_2(df):
 app.layout = html.Div(children=[ 
                                 # TASK1: Add title to the dashboard
                                 # Enter your code below. Make sure you have correct formatting.
-                                html.H1('US Domestic Airline Flights Performance.',
+                                html.H1('US Domestic Airline Flights Performance',
                                         style={'text-align': 'center', 'color': '#503D36' }),
                                 # REVIEW2: Dropdown creation
                                 # Create an outer division 
@@ -141,11 +141,11 @@ app.layout = html.Div(children=[
 # Callback function definition
 # TASK4: Add 5 ouput components
 # Enter your code below. Make sure you have correct formatting.
-@app.callback( [Output('plot1', 'children'),
-                Output('plot2', 'children'),
-                Output('plot3', 'children'),
-                Output('plot4', 'children'),
-                Output('plot5', 'children')],
+@app.callback( [Output(component_id='plot1', component_property='children'),
+                Output(component_id='plot2', component_property='children'),
+                Output(component_id='plot3', component_property='children'),
+                Output(component_id='plot4', component_property='children'),
+                Output(component_id='plot5', component_property='children'),],
                [Input(component_id='input-type', component_property='value'),
                 Input(component_id='input-year', component_property='value')],
                # REVIEW4: Holding output state till user enters all the form information. In this case, it will be chart type and year
@@ -168,6 +168,7 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
             
             # TASK5: Average flight time by reporting airline
             # Enter your code below. Make sure you have correct formatting.
+            
             line_fig = px.line(line_data, x='Month', y='FlightTime', color='Reporting_Airline', title='Average Flight Time by Reporting Airline')
             
             

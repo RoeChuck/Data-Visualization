@@ -1,83 +1,14 @@
-import pandas as pd
-import dash
-import dash_html_components as html
-import dash_core_components as dcc
-from dash.dependencies import Input, Output, State
-import plotly.graph_objects as go
-import plotly.express as px
-from dash import no_update
+# Almost Increasing Sequence
+# Given a sequence of integers as an array, determine whether it is possible to obtain a strictly increasing sequence by removing no more than one element from the array.
 
-app = dash.Dash(__name__)
-
-# REVIEW1: Clear the layout and do not display exception till callback gets executed
-app.config.suppress_callback_exceptions = True
-
-# Read the automobiles data into pandas dataframe
-auto_data =  pd.read_csv('automobileEDA.csv', 
-                            encoding = "ISO-8859-1",
-                            )
-
-#Layout Section of Dash
-
-app.layout = html.Div(children=[
-    html.H1('Car Automobile Components',
-            style={'text-align': 'center', 'color': '#503D36', 'font-family': 'Arial', 'font-size': '30px'}),
-     #outer division starts
-     html.Div([
-                   # First inner divsion for  adding dropdown helper text for Selected Drive wheels
-                    html.Div(
-                        [
-                            html.H2('Drive Wheels Type: ', style={'margin-right': '2em'}),
-                        ]
-                     ),
-                    
-                    #TASK 3C
-                    dcc.Dropdown(
-                        id='demo-dropdown',
-                        value='rwd', # default value of dropdown
-                        options=[
-                            {'label': 'Rear Wheel Drive', 'value': 'rwd'},
-                            {'label': 'Front Wheel Drive', 'value': 'fwd'},
-                            {'label': 'Four Wheel Drive', 'value': '4wd'},
-                        ],
-                    ),
-
-                    #Second Inner division for adding 2 inner divisions for 2 output graphs 
-                
-                        #TASK 3D
-                        html.Div([
-                            html.Div([], id='plot1'),
-                            html.Div([], id='plot2'),
-                        ], style={'display': 'flex'}),
-    ])
-
-
-    #outer division ends
-
-])
-#layout ends
-
-#Place to add @app.callback Decorator
-#TASK 3E
-@app.callback([Output(component_id='plot1', component_property='children'), 
-            Output(component_id='plot2', component_property='children')],
-            Input(component_id='demo-dropdown', component_property='value'))
-
-   
-#Place to define the callback function .
-#TASK 3F
-def display_selected_drive_charts(value):
-
-    filtered_df = auto_data[auto_data['drivewheel'] == value].groupby(['drive-wheels', 'body-style'], as_index=False).mean()
-    filtered_df = filtered_df
-
-    fig1 = px.pie(filtered_df, values='price', names='body-style', title='Price by Body Style')
-    fig2 = px.bar(filtered_df, x='body-style', y='price', color='drive-wheels', barmode='group', title='Price by Body Style and Drive Wheels')
-
-    return [dcc.Graph(figure=fig1), dcc.Graph(figure=fig2)]
-   
-
-
-if __name__ == '__main__':
-    app.run_server()
-    
+def almostIncreasingSequence(sequence):
+    # Write your code here
+    count = 0
+    for i in range(len(sequence)):
+        if sequence[i] <= sequence[i-1]:
+            count += 1
+            if count > 1:
+                return False
+            if i > 1 and sequence[i] <= sequence[i-2]:
+                return False
+    return True 
