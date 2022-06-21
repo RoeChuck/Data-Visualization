@@ -1,0 +1,12 @@
+Based on the videos and the reading material, how would you define a data scientist and data science? (3 marks)
+
+Data scientist is a professional who is responsible for collecting, analyzing, interpreting and transforming 
+large volumes of data. Data scientist is a specialist in the field of data science. 
+It is an interdisciplinary field that combines the sciences of statistics, mathematics, and computer science.
+In a given organization, data scientists bridge the gap between the sciences and the business. Through collaboration, with the data scientist, the business can benefit from the insights gained from the data.
+Data science includes machine learning, data visualization, data mining, data analysis and interpretation,
+which provides the business with the necessary insights to make decisions and improve the performance of the business.
+
+As discussed in the videos and the reading material, data science can be applied to problems across different industries. Give a brief explanation describing what industry  you are passionate about and would like to pursue a data science career in? (2 marks)
+
+I am passionate about the pharmaceutical industry 
